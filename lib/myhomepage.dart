@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_task/signup.dart';
 
 import 'dashboard.dart';
 
@@ -124,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     TextButton(
                       onPressed: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (c) => Signup()));
+                            MaterialPageRoute(builder: (c) => Dashboard()));
                       },
                       child: const Text(
                         "Register",

@@ -22,6 +22,13 @@ class _SignupState extends State<Signup> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+    passwordFocusNode = FocusNode();
+    ConfirmpasswordFocusNode = FocusNode();
+  }
+
   bool showPassword = true;
   bool showConfirmPassword = true;
   late FocusNode passwordFocusNode;
@@ -45,7 +52,8 @@ class _SignupState extends State<Signup> {
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   final DatabaseReference dbref =
-      FirebaseDatabase.instance.reference().child("users");
+      FirebaseDatabase.instance.ref().child("users");
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +188,7 @@ class _SignupState extends State<Signup> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: TextFormField(
                       controller: _Confirmpassword,
                       focusNode: ConfirmpasswordFocusNode,
@@ -256,7 +264,7 @@ class _SignupState extends State<Signup> {
   Widget imageProfile() {
     return Center(
       child: Stack(children: <Widget>[
-        CircleAvatar(
+        const CircleAvatar(
           radius: 40,
         ),
         Positioned(
@@ -269,7 +277,7 @@ class _SignupState extends State<Signup> {
                 builder: ((builder) => bottomSheet()),
               );
             },
-            child: Icon(
+            child: const Icon(
               Icons.camera_alt,
               color: Colors.teal,
               size: 25,
@@ -284,37 +292,37 @@ class _SignupState extends State<Signup> {
     return Container(
       height: 100,
       width: 200,
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: 10,
         vertical: 10,
       ),
       child: Column(
         children: <Widget>[
-          Text(
+          const Text(
             "Choose Profile Photo",
             style: TextStyle(
               fontSize: 12,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
             // ignore: deprecated_member_use
             FlatButton.icon(
-              icon: Icon(Icons.camera),
+              icon: const Icon(Icons.camera),
               onPressed: () {
                 takePhoto(ImageSource.camera);
               },
-              label: Text("Camera"),
+              label: const Text("Camera"),
             ),
             // ignore: deprecated_member_use
             FlatButton.icon(
-              icon: Icon(Icons.image),
+              icon: const Icon(Icons.image),
               onPressed: () {
                 takePhoto(ImageSource.gallery);
               },
-              label: Text("Gallery"),
+              label: const Text("Gallery"),
             ),
           ])
         ],
@@ -337,36 +345,21 @@ class _SignupState extends State<Signup> {
             email: _email.text, password: _password.text)
         .then((result) {
       dbref.child(result.user!.uid).set({
-        "_ename": _name.text,
+        "ename": _name.text,
         "email": _email.text,
         "phone": _phone.text,
         "password": _password.text,
         "confirmpassword": _Confirmpassword.text
         // "name": nameController.text
-      }).then((res) {
-        Navigator.pushReplacement(
-          context,
-          //  MaterialPageRoute(builder: (context) => MyHomePage(uid: result.user.uid)),
-          MaterialPageRoute(builder: (context) => MyHomePage()),
-        );
       });
-    }).catchError((err) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Error"),
-              content: Text(err.message),
-              actions: [
-                TextButton(
-                  child: Text("Ok"),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                )
-              ],
-            );
-          });
+    }).catchError((onError) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        backgroundColor: Colors.black87,
+        content: Text(
+          'Registraion failed',
+          style: TextStyle(color: Colors.white),
+        ),
+      ));
     });
   }
 }
