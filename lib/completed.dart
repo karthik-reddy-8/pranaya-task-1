@@ -13,10 +13,6 @@ class _CompletedtaskState extends State<Completedtask> {
   Widget build(BuildContext context) {
     //_todoItems.sort();
     //final todoItemWidgets = _todoItems.map(_createTodoItemWidget).toList();
-    return Scaffold(
-      body: ListView(
-          // children: todoItemWidgets,
-          ),
-    );
+    return Scaffold();
   }
 }

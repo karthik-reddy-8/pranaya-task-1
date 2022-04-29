@@ -5,8 +5,13 @@ class Todo {
   @PrimaryKey(autoGenerate: true)
   final int? id;
   final String title;
-  final String worktype;
+  final String workType;
   final bool completed;
 
-  Todo(this.id, this.title, this.worktype, this.completed);
+  Todo({
+    this.id,
+    required this.title,
+    required this.workType,
+    required this.completed,
+  });
 }

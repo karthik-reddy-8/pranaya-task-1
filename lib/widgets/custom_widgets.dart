@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 SizedBox buildSizedBox(
@@ -10,8 +9,8 @@ SizedBox buildSizedBox(
     required Color color,
     required VoidCallback callback}) {
   return SizedBox(
-    width: 160.0,
-    height: 200.0,
+    width: 170.0,
+    height: 190.0,
     child: InkWell(
       // onTap: () {
       //   Navigator.push(context,
@@ -26,20 +25,18 @@ SizedBox buildSizedBox(
             child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CircleAvatar(
                 child: Image.asset(
                   // "assets/ic_user.png",
                   image,
-                  height: 40,
-                  width: 40,
+                  height: 30,
+                  width: 30,
                   color: color,
                 ),
-                radius: 40,
+                radius: 25,
                 backgroundColor: backgroundColor,
               ),
-              const SizedBox(height: 12),
               Text(
                 // "Personal",
                 title,
@@ -58,5 +55,43 @@ SizedBox buildSizedBox(
         )),
       ),
     ),
+  );
+}
+
+ElevatedButton buildElevatedButton({
+  required String title,
+  required Color textColor,
+  required Color iconColor,
+  required VoidCallback voidCallback,
+  required bool isVisible,
+  required Color backGroundColor,
+}) {
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      primary: backGroundColor,
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (isVisible)
+          Icon(
+            Icons.circle,
+            color: iconColor,
+            size: 17,
+          ),
+        const SizedBox(
+          width: 7,
+        ),
+        Text(
+          title,
+          style: TextStyle(
+            color: textColor,
+            fontSize: 16,
+          ),
+        ),
+      ],
+    ),
+    onPressed: voidCallback,
   );
 }

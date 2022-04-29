@@ -3,7 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'myhomepage.dart';
+import 'login_page.dart';
 
 class Splash extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _SplashState extends State<Splash> {
         backgroundColor: Colors.white,
         body:
             Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          Text(
+          const Text(
             "Flutter App",
             style: TextStyle(
               fontSize: 25,
@@ -27,17 +27,17 @@ class _SplashState extends State<Splash> {
             ),
           ),
           Image.asset(
-            'assets/todo.jpg',
+            'assets/ic_todo.jpg',
             height: 200,
             width: 400,
           ),
-          Text("Remainders Made Simple",
+          const Text("Remainders Made Simple",
               textAlign: TextAlign.left,
               style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
               )),
-          Text(
+          const Text(
             "Lorem ipsum dolor sit amet, consectetuar adipiscing elit. Mauris pellentesque erat in blandit luctus",
             textAlign: TextAlign.center,
           ),
@@ -54,7 +54,7 @@ class _SplashState extends State<Splash> {
                       child: Text("Get Started"),
                       onPressed: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (c) => MyHomePage()));
+                            MaterialPageRoute(builder: (c) => loginPage()));
                       },
                     )
                   ]))

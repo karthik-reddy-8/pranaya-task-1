@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'myhomepage.dart';
+import 'login_page.dart';
 
 class Signup extends StatefulWidget {
   @override
@@ -251,7 +251,7 @@ class _SignupState extends State<Signup> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (c) => MyHomePage()));
+                                          builder: (c) => loginPage()));
                                 })
                           ])),
                 ]),
