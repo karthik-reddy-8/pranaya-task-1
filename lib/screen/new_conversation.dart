@@ -76,8 +76,7 @@ class _ConversationState extends State<Conversation> {
                     Icons.supervisor_account_rounded,
                     color: Colors.lightBlueAccent,
                   ),
-                  SizedBox
-
+                  SizedBox(
                     width: 5,
                   ),
                   Text(
