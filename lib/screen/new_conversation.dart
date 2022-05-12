@@ -79,7 +79,6 @@ class _ConversationState extends State<Conversation> {
                   SizedBox(
                     width: 5,
                   ),
-                  SizedBox(),
                   Text(
                     "Create a new Group",
                     style: TextStyle(
